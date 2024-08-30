@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaborExpress</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>SaborExpress</h1>
+            <nav>
+                <ul>
+                    <li><a href="#destaques" class="nav-link">Destaques</a></li>
+                    <li><a href="#menu" class="nav-link">Menu</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                    <li><a href="#carrinho" class="nav-link" id="carrinho-link">Carrinho</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="destaques">
+        <div class="container">
+            <h2>Destaques do Dia</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="imagens/pizza.jpg" alt="Pizza">
+                    <h3>Pizza Margherita</h3>
+                    <p>Deliciosa pizza com molho de tomate e queijo.</p>
+                </div>
+                <div class="card">
+                    <img src="imagens/hamburguer.jpg" alt="Hambúrguer">
+                    <h3>Hambúrguer Gourmet</h3>
+                    <p>Hambúrguer suculento com ingredientes frescos.</p>
+                </div>
+                <div class="card">
+                    <img src="imagens/salada.jpg" alt="Salada">
+                    <h3>Salada Caesar</h3>
+                    <p>Salada fresca com molho Caesar e croutons.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="container">
+            <h2>Nosso Menu</h2>
+            <div class="category-button" id="pizzas-button">
+                <h3>Pizzas</h3>
+            </div>
+            <div class="category-content" id="pizzas-content">
+                <ul>
+                    <li>
+                        Pizza Margherita - R$29,90
+                        <button class="add-to-cart" data-item="Pizza Margherita" data-price="29.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Pizza Calabresa - R$34,90
+                        <button class="add-to-cart" data-item="Pizza Calabresa" data-price="34.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Pizza Quatro Queijos - R$39,90
+                        <button class="add-to-cart" data-item="Pizza Quatro Queijos" data-price="39.90">Adicionar ao Carrinho</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="category-button" id="hamburgueres-button">
+                <h3>Hambúrgueres</h3>
+            </div>
+            <div class="category-content" id="hamburgueres-content">
+                <ul>
+                    <li>
+                        Hambúrguer Gourmet - R$24,90
+                        <button class="add-to-cart" data-item="Hambúrguer Gourmet" data-price="24.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Cheeseburguer - R$22,90
+                        <button class="add-to-cart" data-item="Cheeseburguer" data-price="22.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Hambúrguer Vegano - R$27,90
+                        <button class="add-to-cart" data-item="Hambúrguer Vegano" data-price="27.90">Adicionar ao Carrinho</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="category-button" id="saladas-button">
+                <h3>Saladas</h3>
+            </div>
+            <div class="category-content" id="saladas-content">
+                <ul>
+                    <li>
+                        Salada Caesar - R$19,90
+                        <button class="add-to-cart" data-item="Salada Caesar" data-price="19.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Salada de Frango - R$22,90
+                        <button class="add-to-cart" data-item="Salada de Frango" data-price="22.90">Adicionar ao Carrinho</button>
+                    </li>
+                    <li>
+                        Salada Caprese - R$21,90
+                        <button class="add-to-cart" data-item="Salada Caprese" data-price="21.90">Adicionar ao Carrinho</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="container">
+            <h2>Contato</h2>
+            <p>Preencha o formulário abaixo para entrar em contato conosco. Responderemos o mais rápido possível.</p>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 SaborExpress. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <section id="carrinho" class="hidden">
+        <div class="container">
+            <h2>Carrinho</h2>
+            <ul id="cart-items">
+                <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            </ul>
+            <p id="total-price">Total: R$0,00</p>
+            <button id="finalizar-compra">Finalizar Compra</button>
+        </div>
+    </section>
+
+    <script>
+        const cartItems = document.getElementById('cart-items');
+        const totalPriceElem = document.getElementById('total-price');
+        let cart = [];
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const itemName = button.getAttribute('data-item');
+                const itemPrice = parseFloat(button.getAttribute('data-price'));
+
+                // Adiciona item ao carrinho
+                cart.push({ name: itemName, price: itemPrice });
+
+                updateCart();
+            });
+        });
+
+        function updateCart() {
+            // Limpa a lista de itens do carrinho
+            cartItems.innerHTML = '';
+
+            // Adiciona itens ao carrinho
+            let totalPrice = 0;
+            cart.forEach(item => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - R$${item.price.toFixed(2)}`;
+                cartItems.appendChild(listItem);
+                totalPrice += item.price;
+            });
+
+            // Atualiza o total
+            totalPriceElem.textContent = `Total: R$${totalPrice.toFixed(2)}`;
+
+            // Mostra a seção do carrinho
+            document.getElementById('carrinho').classList.remove('hidden');
+        }
+
+        document.getElementById('carrinho-link').addEventListener('click', () => {
+            const carrinhoSection = document.getElementById('carrinho');
+            carrinhoSection.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.category-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const contentId = button.id.replace('-button', '-content');
+                const content = document.getElementById(contentId);
+
+                // Esconde todos os conteúdos
+                document.querySelectorAll('.category-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                // Mostra o conteúdo clicado
+                content.style.display = 'block';
+            });
+        });
+
+        document.getElementById('finalizar-compra').addEventListener('click', () => {
+            let message = 'Pedido:\n';
+            let total = 0;
+
+            cart.forEach(item => {
+                message += `${item.name} - R$${item.price.toFixed(2)}\n`;
+                total += item.price;
+            });
+
+            message += `\nTotal: R$${total.toFixed(2)}`;
+
+            const whatsappNumber = "5581991702554";  // Substitua pelo número de WhatsApp
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Abre o WhatsApp
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
